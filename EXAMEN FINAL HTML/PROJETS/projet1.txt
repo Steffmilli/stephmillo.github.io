@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct volontaire volontaire;
+struct volontaire
+{
+  char nom[30];
+  char prenom[50];
+  int age;
+  int id;
+  char origine[50];
+};
+volontaire vdp[500];
+int n=0,i;
+int trouve=0;
+void ajoutervolontaire();
+void affichagedesvolontaires();
+void recherchevolontaire();
+void surpprimervolontaire();
+int main(int argc, char *argv[]) 
+{
+	int a;
+	do
+	{
+	  printf("VEUILLEZ ENTRER LE CHIFFRE VOUS CORRESPONDANT \n");
+	  printf("1.pour ajouter un volontaire \n");
+	  printf("2.pour afficher liste des volontaires \n");
+	  printf("3.pour rechercher un volontaire \n");
+	  printf("4.pour supprimer un volontaire \n");
+	  printf("5.pour quitter le programme \n");
+	  scanf("%d",&a);
+	  system("cls");
+	switch(a)
+	{
+     case 1: ajoutervolontaire();
+      break;
+     case 2: affichagedesvolontaires();
+      break;
+     case 3: recherchevolontaire();
+      break;
+     case 4: surpprimervolontaire();
+      break;
+     case 5:printf("fin du programme");
+     break;
+     default:printf("invalide retapper\n");
+     }
+  }while(a!=5);
+	return 0;
+}
+void ajoutervolontaire()
+{
+	 if(n<500)
+	  {
+	    printf("Entrer le nom du volontaire:\n");
+  	    scanf("%s",vdp[n].nom);
+ 	    printf("Entrer le prenom du volontaire:\n");
+  	    scanf("%s",vdp[n].prenom);
+  	    printf("Entrer l'age du volontaire:\n");
+  	    scanf("%d",&vdp[n].age);
+  	    printf("Entrer la region d'origine du volontaire:\n");
+  	    scanf("%s",&vdp[n].origine);
+  	    printf("Entrer identifiant du volontaire:\n");
+  	    scanf("%d",&vdp[n].id);
+  	    system("cls");
+  	    n++;
+  	    printf("volontaire ajouter\n");
+  	  }
+  	 else
+  	 {
+  	  printf("la est liste pleine");
+	 }
+}
+void affichagedesvolontaires()
+{
+	if(n>0)
+     {	
+       for(i=0;i<n;i++)
+        {
+  	     printf("nom: %s prenom: %s age: %d origine: %s identifiant: %d\n",vdp[i].nom,vdp[i].prenom,vdp[i].age,vdp[i].origine,vdp[i].id);
+        }
+     }
+   else
+    {
+      printf("liste vide\n");
+    }
+}
+void recherchevolontaire()
+{
+	char r[30];
+	if(n>0)
+	{
+  	   printf("entrer le nom du volontaire rechercher");
+  	   scanf("%s",r);
+  	   for(i=0;i<n;i++) 
+        {
+  	      if(strcmp(vdp[i].nom,r)==0)
+  	       {
+  	        printf("volontaire rechercher est");
+  	        printf("\n nom: %s prenom: %s age: %d origine: %s identifiant: %d \n",vdp[i].nom,vdp[i].prenom,vdp[i].age,vdp[i].origine,vdp[i].id);
+           } 
+         }
+         printf("aucun volontaire trouve entrer un bon nom\n");
+     }     
+    if(n==0)
+    {
+     printf("liste vide \n");
+	}
+}
+void surpprimervolontaire()
+{
+	int b;
+   if(n>0)
+    {
+    	printf("Entrer l'identifiant du volontaire a supprimer ");
+        scanf("%d",&b);
+       for(i=0;i<n;i++)
+        {
+   	      if(vdp[i].id==b)
+   	       {
+   	     	vdp[i]=vdp[n-1];
+   	     	n--;
+   	 	    printf("volontaire supprimer\n");
+	       }
+        }
+	}
+   if(n==0)
+   {
+   	printf("liste vide\n");
+   }
+}
